@@ -1,4 +1,6 @@
 export type Topic =
+  | 'Pecahan'
+  | 'Desimal'
   | 'Perkalian Pecahan'
   | 'Pembagian Pecahan'
   | 'Pecahan ke Desimal'
@@ -48,7 +50,7 @@ export interface UserState {
   maxStreak: number;
   answeredCorrectly: number;
   totalAnswered: number;
-  topicsTried: Record<Topic, boolean>;
+  topicsTried: Record<string, boolean>; // Changed from Record<Topic, boolean> to loosen restriction temporarily
   badges: string[];
 }
 
@@ -67,4 +69,22 @@ export interface MathPost {
     type: 'kuis' | 'link';
     payload?: any;
   }
+}
+
+export interface FeedPost {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+    role: string;
+  };
+  timeAgo: string;
+  content: string;
+  likes: number;
+  comments: number;
+  action?: {
+    type: string;
+    label: string;
+    correctAnswer?: string;
+  };
 }
